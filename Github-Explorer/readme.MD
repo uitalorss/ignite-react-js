@@ -45,3 +45,41 @@ module.exports = {
 
 Graças ao cli, torna-se possível usar o código abaixo, onde o babel vai converter o arquivo onde estou escrevendo o js e ele converte para ser possível os navegadores lerem o código e processar de forma adequada.
 `yarn babel src/index.js --out-file dist/bundle.js `
+
+# Webpack
+
+Responsável por tratar tipos de arquivos necessários em uma aplicação e converter em arquivos entendíveis pelos navegadores.
+ex: .scss -> .css
+
+## Instalação
+
+`yarn add webpack webpack-cli webpack-dev-server -D `
+
+## Configuração
+
+Criar na raiz do projeto o arquivo `webpack.config.js` e adicionar o seguinte código:
+
+```
+//convenção para poder tratar o código independente do sistema operacional.
+const path = require('path')
+
+module.exports = {
+  entry: path.resolve(__dirname, 'src', 'index.jsx'), //indica onde está o arquivo principal da aplicação
+  output: {
+    path: path.resolve(__dirname, 'dist'), // indica onde está o arquivo de saída da aplicação
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'], //falando para a aplicação tratar os arquivos js e jsx
+  },
+  module: {
+    rules: [//cria um array com regras para verificar cada extensão e tratar da forma correta.
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader', //integra o babel e o webpack. Responsável por converter o tipo do arquivo que está no test para um tipo que o navegador entenda.
+      }
+    ]
+  }
+}
+```
