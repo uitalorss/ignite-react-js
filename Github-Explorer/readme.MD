@@ -83,3 +83,20 @@ module.exports = {
   }
 }
 ```
+
+# Estrutura do React
+
+Diferente de uma página HTML estática, no React nós não temos todos os elementos da página contidos nela, por convenção, no arquivo index nós teremos apenas uma div com id root.
+
+Todo o conteúdo renderizado na página estarão em outros arquivos que são carregados através do webpack e do babel e chamado para o index através do arquivo bundle.
+
+```
+//Estamos usando a propriedade render do react dom para renderizar o conteúdo da função App e direcionando para ser renderizado no elemento que tiver o id root na página html.
+
+//Na página HTML por convenção há somente uma div com um id root, lá também adicionamos como script o arquivo bundle.js da pasta dist. Quando rodarmos o webpack, todo o conteúdo dos arquivos jsx serão convertidos no arquivo bundle, que será chamado no arquivo html, renderizando todo o conteúdo.
+
+import { render } from "react-dom";
+import { App } from "./App";
+
+render(<App />, document.getElementById('root'));
+```
