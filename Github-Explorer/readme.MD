@@ -100,3 +100,24 @@ import { App } from "./App";
 
 render(<App />, document.getElementById('root'));
 ```
+
+# Configurando ambiente de desenvolvimento e produção
+
+No arquivo webpack config se cria uma const e atribui a ela uma verificação para ser diferente de production
+`const isDevelopment = process.env.NODE_ENV !== 'production'`
+
+Dentro do module-exports, a propriedade mode recebe como valor a verificação constante em isDevelopment, se for truthy, é atribuído o modo de desenvolvimento, se for falsy (NODE_ENV é igual 'production'), é atribuído o modo de produção.
+
+A propriedade devtool também recebe a mesma verificação. Essa propriedade cuida do source map, para poder verificar o código original da aplicação, mesmo com ele no meio do código que é gerado para o React ser usado.
+
+Via linha de comando, cria-se a NODE_ENV `NODE_ENV=production yarn webpack `
+em package.json, cria-se a propriedade script, passando um atalho e o valor que será atribuído quando os modos forem chamados.
+
+```
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "NODE_ENV=production webpack"
+  },
+```
+
+assim, quando usarmos yarn dev, o webpack chamará como estávamos fazendo até então, e quando chamarmos yarn build, ele atribuirá o valor production à NODE_ENV, e passará a usar o modo de produção.
