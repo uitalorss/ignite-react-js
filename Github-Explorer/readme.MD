@@ -121,3 +121,33 @@ em package.json, cria-se a propriedade script, passando um atalho e o valor que 
 ```
 
 assim, quando usarmos yarn dev, o webpack chamará como estávamos fazendo até então, e quando chamarmos yarn build, ele atribuirá o valor production à NODE_ENV, e passará a usar o modo de produção.
+
+# Importando arquivos CSS
+
+instala as dependencias através desse código `yarn add style-loader css-loader -D`
+Cria uma nova rule no webpack.config, para tratar os imports de arquivos css.
+
+```
+ {
+   test: /\.css$/,
+   exclude: /node_modules/,
+   use: ['style-loader', 'css-loader'],
+},
+```
+
+A partir daqui, é só importar usando o caminho corretamente. :)
+
+## EXTRA-Utilizando SASS
+
+instala a dependencia através desse código `yarn add sass-loader -D` e a dependencia `yarn add node-sass -D`
+Cria uma nova rule no webpack.config, para tratar os imports de arquivos scss.
+
+```
+ {
+   test: /\.scss$/,
+   exclude: /node_modules/,
+   use: ['style-loader', 'css-loader', sass-loader],
+},
+```
+
+A partir daqui, é só importar usando o caminho corretamente. :)
