@@ -1,5 +1,12 @@
+import { Counter } from '../public/components/Counter';
+import { RepositoryList } from '../public/components/RepositoryList'
 import './styles/style.css'
 
 export function App(){
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <RepositoryList />
+      <Counter />
+    </>
+  );
 }
